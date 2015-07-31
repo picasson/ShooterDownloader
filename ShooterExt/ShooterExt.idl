@@ -1,0 +1,34 @@
+// ShooterExt.idl : IDL source for ShooterExt
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ShooterExt.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(ECABC9F3-A74D-4ED5-9430-DE74237396FB),
+	helpstring("IShooterContextMenuExt Interface"),
+	pointer_default(unique)
+]
+interface IShooterContextMenuExt : IUnknown{
+};
+[
+	uuid(9EB5652F-C9BD-43EB-9B5C-5746F62F7E7C),
+	version(1.0),
+	helpstring("ShooterExt 1.0 Type Library")
+]
+library ShooterExtLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5258ACEF-6A10-4CDC-B5A5-B4B0D7EF23B2),
+		helpstring("ShooterContextMenuExt Class")
+	]
+	coclass ShooterContextMenuExt
+	{
+		[default] interface IShooterContextMenuExt;
+	};
+};

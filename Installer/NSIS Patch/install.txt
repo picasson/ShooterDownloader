@@ -1,0 +1,5 @@
+Installation:
+Copy TradChinese.nsh to <NSIS install path>\Contrib\Language files.
+
+Description:
+This customized TradChinese.nsh localizes the MULTIUSER_PAGE_INSTALLMODE.

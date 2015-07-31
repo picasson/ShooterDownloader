@@ -1,0 +1,14 @@
+Splayer and www.shooter.com.cn
+Splayer is a open source video player that automatically downloads subtitles 
+from shooter.com.cn. My software won't exist without them.
+http://www.splayer.org/
+http://www.shooter.com.cn/
+
+NCharDet:
+A .Net port of the charset detector of the Mozilla and FireFox browsers. 
+http://www.conceptdevelopment.net/Localization/NCharDet/
+
+Application Icon:
+Application icon comes from Tango Icon Library
+http://tango.freedesktop.org/Tango_Icon_Library
+
