@@ -25,7 +25,7 @@ namespace ShooterDownloader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AutoChsToChtConversion {
             get {
                 return ((bool)(this["AutoChsToChtConversion"]));
@@ -176,6 +176,18 @@ namespace ShooterDownloader.Properties {
             }
             set {
                 this["HttpTimeout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoChtToChsConversion {
+            get {
+                return ((bool)(this["AutoChtToChsConversion"]));
+            }
+            set {
+                this["AutoChtToChsConversion"] = value;
             }
         }
     }

@@ -40,6 +40,7 @@ namespace ShooterDownloader
 
 		//For ConvertChsToCht
 		private const int LOCALE_SYSTEM_DEFAULT = 0x0800;
+		private const int LOCAL_CHINA = 0x0804;
 		private const int LOCALE_TAIWAN = 1028;
 		private const int LCMAP_SIMPLIFIED_CHINESE = 0x02000000;
 		private const int LCMAP_TRADITIONAL_CHINESE = 0x04000000;
@@ -166,21 +167,86 @@ namespace ShooterDownloader
 			{
 				if(decompressStream != null)
 					decompressStream.Close();
-				else if(inStream != null)
-					inStream.Close();
+				else
+					inStream?.Close();
 
-				if(outStream != null)
-					outStream.Close();
+				outStream?.Close();
 			}
 
 			return ret;
 		}
 
 		[DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
-		private static extern int LCMapString(int Locale, int dwMapFlags, string lpSrcStr, int cchSrc
-			, [Out] string lpDestStr, int cchDest);
+		private static extern int LCMapString(int Locale, int dwMapFlags, string lpSrcStr, int cchSrc, [Out] string lpDestStr, int cchDest);
 
-		public static ConversionResult ConvertChsToCht(string inFile, string outFile) { return ConvertChsToCht(inFile, outFile, true); }
+		public static ConversionResult ConvertChtToChs(string inFile, string outFile) => ConvertChsToCht(inFile, outFile, true);
+
+		public static ConversionResult ConvertChtToChs(string inFile, string outFile, bool detectEncoding)
+		{
+			var ret = ConversionResult.Error;
+			StreamReader reader = null;
+			FileStream outStream = null;
+			StreamWriter writer = null;
+
+			try
+			{
+				Encoding inEncoding = DetectEncoding(inFile);
+				if(inEncoding != null)
+				{
+					if(!detectEncoding)
+					{
+						//if detectEncoding is false, overwrite the result of 
+						//  encoding detection unless it's GB or unicode.
+						if(inEncoding.CodePage != 950 && inEncoding != Encoding.UTF8 && inEncoding != Encoding.Unicode)
+							inEncoding = Encoding.GetEncoding(950);
+					}
+					//If the encoding is Big5 or Unicode
+					if(inEncoding.CodePage == 950 || inEncoding == Encoding.UTF8 || inEncoding == Encoding.Unicode)
+					{
+						reader = new StreamReader(inFile, inEncoding);
+						outStream = new FileStream(outFile, FileMode.OpenOrCreate);
+						Encoding outEncoding;
+						if(inEncoding == Encoding.UTF8 || inEncoding == Encoding.Unicode)
+							//if the encoding of the source is UTF8 or UTF16, output encoding should be Unicode too.
+							outEncoding = inEncoding;
+						else
+							outEncoding = Encoding.GetEncoding("GB2312");
+						writer = new StreamWriter(outStream, outEncoding);
+						string line = null;
+						while((line = reader.ReadLine()) != null)
+						{
+							var chsLine = new string(' ', line.Length);
+							LCMapString(LOCAL_CHINA, LCMAP_SIMPLIFIED_CHINESE, line, line.Length, chsLine, chsLine.Length);
+							writer.WriteLine(chsLine);
+						}
+
+						ret = ConversionResult.OK;
+					}
+					else
+						ret = ConversionResult.NoConversion;
+				}
+				else
+					ret = ConversionResult.Error;
+			}
+			catch(Exception ex)
+			{
+				LogMan.Instance.Log(ex.Message);
+				ret = ConversionResult.Error;
+			}
+			finally
+			{
+				reader?.Close();
+
+				if(writer != null)
+					writer.Close();
+				else
+					outStream?.Close();
+			}
+
+			return ret;
+		}
+
+		public static ConversionResult ConvertChsToCht(string inFile, string outFile) => ConvertChsToCht(inFile, outFile, true);
 
 		public static ConversionResult ConvertChsToCht(string inFile, string outFile, bool detectEncoding)
 		{
@@ -241,13 +307,12 @@ namespace ShooterDownloader
 			}
 			finally
 			{
-				if(reader != null)
-					reader.Close();
+				reader?.Close();
 
 				if(writer != null)
 					writer.Close();
-				else if(outStream != null)
-					outStream.Close();
+				else
+					outStream?.Close();
 			}
 
 			return ret;
@@ -312,11 +377,12 @@ namespace ShooterDownloader
 
 		public static void RunProc(string filePath, string args, bool needElevation)
 		{
-			var procInfo = new ProcessStartInfo();
-			procInfo.UseShellExecute = true;
-			procInfo.FileName = filePath;
-			procInfo.Arguments = args;
-			procInfo.WorkingDirectory = Environment.CurrentDirectory;
+			var procInfo = new ProcessStartInfo {
+				UseShellExecute = true,
+				FileName = filePath,
+				Arguments = args,
+				WorkingDirectory = Environment.CurrentDirectory
+			};
 			if(needElevation)
 				procInfo.Verb = "runas";
 
@@ -328,9 +394,8 @@ namespace ShooterDownloader
 
 		public static bool RegisterDll(string dllPath)
 		{
-			string regsvr32Path = string.Format("\"{0}\\regsvr32.exe\"",
-				Environment.GetFolderPath(Environment.SpecialFolder.System));
-			string arg = string.Format("/s \"{0}\"", dllPath);
+			string regsvr32Path = $"\"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\\regsvr32.exe\"";
+			string arg = $"/s \"{dllPath}\"";
 
 			try
 			{
@@ -347,9 +412,8 @@ namespace ShooterDownloader
 
 		public static bool UnregisterDll(string dllPath)
 		{
-			string regsvr32Path = string.Format("\"{0}\\regsvr32.exe\"",
-				Environment.GetFolderPath(Environment.SpecialFolder.System));
-			string arg = string.Format("/s /u \"{0}\"", dllPath);
+			string regsvr32Path = $"\"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\\regsvr32.exe\"";
+			string arg = $"/s /u \"{dllPath}\"";
 
 			try
 			{

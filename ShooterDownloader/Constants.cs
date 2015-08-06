@@ -16,16 +16,18 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace ShooterDownloader
 {
-    class ShooterConst
-    {
-        public const int Error = -1;
-        public const int NoSubFound = -2;
-        public const int MaxConcurrentJobs = 3;
-        public const int MaxHttpTimeout = 60;
-        public const int MinHttpTimeout = 10;
-        public const int HttpTimeoutIncrement = 10;
-    }
+	internal class ShooterConst
+	{
+		public const int Error = -1;
+		public const int NoSubFound = -2;
+		public const int MaxConcurrentJobs = 3;
+		public const int MaxHttpTimeout = 60;
+		public const int MinHttpTimeout = 10;
+		public const int HttpTimeoutIncrement = 10;
+		public const string DontConversion = "不转换";
+		public const string AutoChtToChsConversion = "繁体 -> 简体";
+		public const string AutoChsToChtConversion = "简体 -> 繁体";
+	}
 }

@@ -61,6 +61,15 @@ namespace ShooterDownloader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} 繁转简失败.
+        /// </summary>
+        internal static string ErrChsConvertion {
+            get {
+                return ResourceManager.GetString("ErrChsConvertion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} 简转繁失败.
         /// </summary>
         internal static string ErrChtConvertion {
@@ -151,6 +160,15 @@ namespace ShooterDownloader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} 繁转简成功.
+        /// </summary>
+        internal static string InfoChsConversionOk {
+            get {
+                return ResourceManager.GetString("InfoChsConversionOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} 简转繁成功.
         /// </summary>
         internal static string InfoChtConversionOk {
@@ -178,7 +196,7 @@ namespace ShooterDownloader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 字幕简转繁完成.
+        ///   Looks up a localized string similar to 字幕转换完成.
         /// </summary>
         internal static string InfoEasyConversionOk {
             get {
@@ -214,11 +232,20 @@ namespace ShooterDownloader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 字幕不是简体，不用转换.
+        ///   Looks up a localized string similar to {0} 字幕不用转换.
         /// </summary>
         internal static string InfoNoConversion {
             get {
                 return ResourceManager.GetString("InfoNoConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} 开始将字幕转为简体.
+        /// </summary>
+        internal static string InfoStartChsConversion {
+            get {
+                return ResourceManager.GetString("InfoStartChsConversion", resourceCulture);
             }
         }
         

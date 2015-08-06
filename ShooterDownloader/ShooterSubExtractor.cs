@@ -186,30 +186,30 @@ namespace ShooterDownloader
 
 			if(bOk)
 			{
-				if(Settings.Default.AutoChsToChtConversion)
+				if(Settings.Default.AutoChsToChtConversion || Settings.Default.AutoChtToChsConversion)
 				{
 					//Do converision
-					string chtTempPath = Path.GetTempFileName();
-					LogMan.Instance.Log(Resources.InfoStartChtConversion, _videoFileName);
-					Util.ConversionResult ret = Util.ConvertChsToCht(tempFilePath, chtTempPath);
+					string conversionTempPath = Path.GetTempFileName();
+					LogMan.Instance.Log(Settings.Default.AutoChsToChtConversion ? Resources.InfoStartChtConversion : Resources.InfoStartChsConversion, _videoFileName);
+					Util.ConversionResult ret = Settings.Default.AutoChsToChtConversion ? Util.ConvertChsToCht(tempFilePath, conversionTempPath) : Util.ConvertChtToChs(tempFilePath, conversionTempPath);
 
 					if(ret == Util.ConversionResult.OK)
 					{
-						LogMan.Instance.Log(Resources.InfoChtConversionOk, _videoFileName);
+						LogMan.Instance.Log(Settings.Default.AutoChsToChtConversion ? Resources.InfoChtConversionOk : Resources.InfoChsConversionOk, _videoFileName);
 						File.Delete(tempFilePath);
 						//continue processing the decompressed file.
-						tempFilePath = chtTempPath;
+						tempFilePath = conversionTempPath;
 					}
 					else if(ret == Util.ConversionResult.NoConversion)
 					{
 						//No conversion happened
 						LogMan.Instance.Log(Resources.InfoNoConversion, _videoFileName);
-						File.Delete(chtTempPath);
+						File.Delete(conversionTempPath);
 					}
 					else
 					{
-						LogMan.Instance.Log(Resources.ErrChtConvertion, _videoFileName);
-						File.Delete(chtTempPath);
+						LogMan.Instance.Log(Settings.Default.AutoChsToChtConversion ? Resources.ErrChtConvertion : Resources.ErrChsConvertion, _videoFileName);
+						File.Delete(conversionTempPath);
 					}
 				}
 			}

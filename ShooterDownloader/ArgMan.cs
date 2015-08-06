@@ -44,15 +44,15 @@ namespace ShooterDownloader
 					_listFilePath = ExtractArgValue(arg);
 					if(File.Exists(_listFilePath))
 					{
-						var reader = new StreamReader(_listFilePath);
-
-						string line = reader.ReadLine();
-						while(line != null)
-						{
-							fileList.Add(line);
-							line = reader.ReadLine();
+						using(var reader = new StreamReader(_listFilePath)) {
+							string line = reader.ReadLine();
+							while(line != null)
+							{
+								fileList.Add(line);
+								line = reader.ReadLine();
+							}
+							reader.Close();
 						}
-						reader.Close();
 					}
 				}
 				else if(arg == "/c")

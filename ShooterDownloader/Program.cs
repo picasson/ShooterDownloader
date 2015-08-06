@@ -45,7 +45,11 @@ namespace ShooterDownloader
 						File.Move(filePath, backupFilePath);
 
 						//If no conversion happened, restore the file.
-						Util.ConversionResult ret = Util.ConvertChsToCht(backupFilePath, filePath, false);
+						Util.ConversionResult ret;
+						if(Settings.Default.AutoChsToChtConversion)
+							ret = Util.ConvertChsToCht(backupFilePath, filePath, false);
+						else
+							ret = Util.ConvertChtToChs(backupFilePath, filePath, false);
 						if(ret == Util.ConversionResult.NoConversion || ret == Util.ConversionResult.Error)
 						{
 							if(File.Exists(filePath))

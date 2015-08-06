@@ -33,20 +33,21 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtVideoFileExt = new System.Windows.Forms.TextBox();
-			this.cbConcurrenctNum = new System.Windows.Forms.ComboBox();
-			this.chkEnableConvert = new System.Windows.Forms.CheckBox();
+			this.cboConcurrenctNum = new System.Windows.Forms.ComboBox();
 			this.lblTitleVersion = new System.Windows.Forms.Label();
 			this.btnEnableShellExt = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
-			this.cbHttpTimeout = new System.Windows.Forms.ComboBox();
+			this.cboHttpTimeout = new System.Windows.Forms.ComboBox();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnOk = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cboLanguageConversion = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// chkEnableLog
 			// 
 			this.chkEnableLog.AutoSize = true;
-			this.chkEnableLog.Location = new System.Drawing.Point(17, 108);
+			this.chkEnableLog.Location = new System.Drawing.Point(15, 108);
 			this.chkEnableLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.chkEnableLog.Name = "chkEnableLog";
 			this.chkEnableLog.Size = new System.Drawing.Size(75, 21);
@@ -57,10 +58,10 @@
 			// 
 			// btnOpenLogFolder
 			// 
-			this.btnOpenLogFolder.Location = new System.Drawing.Point(119, 103);
+			this.btnOpenLogFolder.Location = new System.Drawing.Point(120, 103);
 			this.btnOpenLogFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.btnOpenLogFolder.Name = "btnOpenLogFolder";
-			this.btnOpenLogFolder.Size = new System.Drawing.Size(254, 28);
+			this.btnOpenLogFolder.Size = new System.Drawing.Size(250, 28);
 			this.btnOpenLogFolder.TabIndex = 4;
 			this.btnOpenLogFolder.Text = "打开日志所在文件夹";
 			this.btnOpenLogFolder.UseVisualStyleBackColor = true;
@@ -78,7 +79,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(14, 75);
+			this.label2.Location = new System.Drawing.Point(12, 75);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 17);
 			this.label2.TabIndex = 6;
@@ -86,40 +87,28 @@
 			// 
 			// txtVideoFileExt
 			// 
-			this.txtVideoFileExt.Location = new System.Drawing.Point(119, 72);
+			this.txtVideoFileExt.Location = new System.Drawing.Point(120, 72);
 			this.txtVideoFileExt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.txtVideoFileExt.Name = "txtVideoFileExt";
-			this.txtVideoFileExt.Size = new System.Drawing.Size(254, 23);
+			this.txtVideoFileExt.Size = new System.Drawing.Size(250, 23);
 			this.txtVideoFileExt.TabIndex = 8;
 			this.txtVideoFileExt.TextChanged += new System.EventHandler(this.txtVideoFileExt_TextChanged);
 			// 
-			// cbConcurrenctNum
+			// cboConcurrenctNum
 			// 
-			this.cbConcurrenctNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbConcurrenctNum.FormattingEnabled = true;
-			this.cbConcurrenctNum.Location = new System.Drawing.Point(120, 9);
-			this.cbConcurrenctNum.Name = "cbConcurrenctNum";
-			this.cbConcurrenctNum.Size = new System.Drawing.Size(253, 25);
-			this.cbConcurrenctNum.TabIndex = 9;
-			this.cbConcurrenctNum.SelectedIndexChanged += new System.EventHandler(this.cbConcurrenctNum_SelectedIndexChanged);
-			// 
-			// chkEnableConvert
-			// 
-			this.chkEnableConvert.AutoSize = true;
-			this.chkEnableConvert.Location = new System.Drawing.Point(17, 139);
-			this.chkEnableConvert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.chkEnableConvert.Name = "chkEnableConvert";
-			this.chkEnableConvert.Size = new System.Drawing.Size(171, 21);
-			this.chkEnableConvert.TabIndex = 10;
-			this.chkEnableConvert.Text = "自动将简体字幕转化成繁体";
-			this.chkEnableConvert.UseVisualStyleBackColor = true;
-			this.chkEnableConvert.CheckedChanged += new System.EventHandler(this.chkEnableConvert_CheckedChanged);
+			this.cboConcurrenctNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboConcurrenctNum.FormattingEnabled = true;
+			this.cboConcurrenctNum.Location = new System.Drawing.Point(120, 9);
+			this.cboConcurrenctNum.Name = "cboConcurrenctNum";
+			this.cboConcurrenctNum.Size = new System.Drawing.Size(250, 25);
+			this.cboConcurrenctNum.TabIndex = 9;
+			this.cboConcurrenctNum.SelectedIndexChanged += new System.EventHandler(this.cbConcurrenctNum_SelectedIndexChanged);
 			// 
 			// lblTitleVersion
 			// 
 			this.lblTitleVersion.AutoSize = true;
 			this.lblTitleVersion.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.lblTitleVersion.Location = new System.Drawing.Point(9, 241);
+			this.lblTitleVersion.Location = new System.Drawing.Point(9, 250);
 			this.lblTitleVersion.Name = "lblTitleVersion";
 			this.lblTitleVersion.Size = new System.Drawing.Size(80, 17);
 			this.lblTitleVersion.TabIndex = 11;
@@ -127,10 +116,10 @@
 			// 
 			// btnEnableShellExt
 			// 
-			this.btnEnableShellExt.Location = new System.Drawing.Point(12, 168);
+			this.btnEnableShellExt.Location = new System.Drawing.Point(15, 170);
 			this.btnEnableShellExt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.btnEnableShellExt.Name = "btnEnableShellExt";
-			this.btnEnableShellExt.Size = new System.Drawing.Size(361, 28);
+			this.btnEnableShellExt.Size = new System.Drawing.Size(355, 28);
 			this.btnEnableShellExt.TabIndex = 12;
 			this.btnEnableShellExt.Text = "启用右键菜单";
 			this.btnEnableShellExt.UseVisualStyleBackColor = true;
@@ -139,25 +128,25 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(13, 43);
+			this.label3.Location = new System.Drawing.Point(12, 43);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(82, 17);
 			this.label3.TabIndex = 13;
 			this.label3.Text = "HTTP超时(秒)";
 			// 
-			// cbHttpTimeout
+			// cboHttpTimeout
 			// 
-			this.cbHttpTimeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbHttpTimeout.FormattingEnabled = true;
-			this.cbHttpTimeout.Location = new System.Drawing.Point(120, 40);
-			this.cbHttpTimeout.Name = "cbHttpTimeout";
-			this.cbHttpTimeout.Size = new System.Drawing.Size(253, 25);
-			this.cbHttpTimeout.TabIndex = 14;
-			this.cbHttpTimeout.SelectedIndexChanged += new System.EventHandler(this.cbHttpTimeout_SelectedIndexChanged);
+			this.cboHttpTimeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboHttpTimeout.FormattingEnabled = true;
+			this.cboHttpTimeout.Location = new System.Drawing.Point(120, 40);
+			this.cboHttpTimeout.Name = "cboHttpTimeout";
+			this.cboHttpTimeout.Size = new System.Drawing.Size(250, 25);
+			this.cboHttpTimeout.TabIndex = 14;
+			this.cboHttpTimeout.SelectedIndexChanged += new System.EventHandler(this.cbHttpTimeout_SelectedIndexChanged);
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(253, 204);
+			this.btnCancel.Location = new System.Drawing.Point(250, 206);
 			this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(120, 28);
@@ -168,7 +157,7 @@
 			// 
 			// btnOk
 			// 
-			this.btnOk.Location = new System.Drawing.Point(119, 204);
+			this.btnOk.Location = new System.Drawing.Point(120, 206);
 			this.btnOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(120, 28);
@@ -177,22 +166,41 @@
 			this.btnOk.UseVisualStyleBackColor = true;
 			this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(12, 143);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(68, 17);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "简繁体转换";
+			// 
+			// cboLanguageConversion
+			// 
+			this.cboLanguageConversion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboLanguageConversion.FormattingEnabled = true;
+			this.cboLanguageConversion.Location = new System.Drawing.Point(120, 138);
+			this.cboLanguageConversion.Name = "cboLanguageConversion";
+			this.cboLanguageConversion.Size = new System.Drawing.Size(250, 25);
+			this.cboLanguageConversion.TabIndex = 17;
+			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
-			this.ClientSize = new System.Drawing.Size(384, 267);
+			this.ClientSize = new System.Drawing.Size(384, 276);
 			this.ControlBox = false;
+			this.Controls.Add(this.cboLanguageConversion);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOk);
-			this.Controls.Add(this.cbHttpTimeout);
+			this.Controls.Add(this.cboHttpTimeout);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.btnEnableShellExt);
 			this.Controls.Add(this.lblTitleVersion);
-			this.Controls.Add(this.chkEnableConvert);
-			this.Controls.Add(this.cbConcurrenctNum);
+			this.Controls.Add(this.cboConcurrenctNum);
 			this.Controls.Add(this.txtVideoFileExt);
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnOpenLogFolder);
@@ -219,13 +227,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtVideoFileExt;
-        private System.Windows.Forms.ComboBox cbConcurrenctNum;
+        private System.Windows.Forms.ComboBox cboConcurrenctNum;
         private System.Windows.Forms.CheckBox chkEnableConvert;
         private System.Windows.Forms.Label lblTitleVersion;
         private System.Windows.Forms.Button btnEnableShellExt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbHttpTimeout;
+        private System.Windows.Forms.ComboBox cboHttpTimeout;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnOk;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.RadioButton rbtnChtToChsConvertion;
+		private System.Windows.Forms.RadioButton rbtnChsToChtConvertion;
+		private System.Windows.Forms.ComboBox cboLanguageConversion;
 	}
 }

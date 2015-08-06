@@ -34,11 +34,13 @@ namespace ShooterDownloader
 			lblTitleVersion.Text = $"{Resources.InfoTitle} {Application.ProductVersion}";
 
 			for(var i = 1; i <= ShooterConst.MaxConcurrentJobs; i++)
-				cbConcurrenctNum.Items.Add(i);
+				cboConcurrenctNum.Items.Add(i);
 
 			for(int i = ShooterConst.MinHttpTimeout; i <= ShooterConst.MaxHttpTimeout;
 				i += ShooterConst.HttpTimeoutIncrement)
-				cbHttpTimeout.Items.Add(i);
+				cboHttpTimeout.Items.Add(i);
+
+			cboLanguageConversion.Items.AddRange(new[] { ShooterConst.DontConversion, ShooterConst.AutoChtToChsConversion, ShooterConst.AutoChsToChtConversion });
 
 			UpdateShellExtButton();
 		}
@@ -69,14 +71,12 @@ namespace ShooterDownloader
 			//Load settings and check value format.
 
 			//1 <= concurrentNum <= ShooterConst.MaxConcurrentJobs
-			int concurrentNum =
-				Util.GetGetBoundedValue(Settings.Default.MaxConcurrentJobs,
-					1, ShooterConst.MaxConcurrentJobs);
-			SelectCbItemByValue(cbConcurrenctNum, concurrentNum);
+			int concurrentNum = Util.GetGetBoundedValue(Settings.Default.MaxConcurrentJobs, 1, ShooterConst.MaxConcurrentJobs);
+			SelectCbItemByValue(cboConcurrenctNum, concurrentNum);
 
 			int maxHttpTimeout = Util.GetGetBoundedValue(Settings.Default.HttpTimeout, ShooterConst.MinHttpTimeout, ShooterConst.MaxHttpTimeout);
 			maxHttpTimeout = maxHttpTimeout - (maxHttpTimeout % 10);
-			SelectCbItemByValue(cbHttpTimeout, maxHttpTimeout);
+			SelectCbItemByValue(cboHttpTimeout, maxHttpTimeout);
 
 			txtVideoFileExt.Text = Settings.Default.VideoFileExt;
 
@@ -100,11 +100,14 @@ namespace ShooterDownloader
 
 			if(IsDirty)
 			{
-				Settings.Default.MaxConcurrentJobs = GetCbSelectedValueInt(cbConcurrenctNum, 1);
+				Settings.Default.MaxConcurrentJobs = GetCbSelectedValueInt(cboConcurrenctNum, 1);
 				Settings.Default.VideoFileExt = txtVideoFileExt.Text;
 				Settings.Default.EnableLog = chkEnableLog.Checked;
-				Settings.Default.AutoChsToChtConversion = chkEnableConvert.Checked;
-				Settings.Default.HttpTimeout = GetCbSelectedValueInt(cbHttpTimeout, ShooterConst.MaxHttpTimeout);
+				if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChtToChsConversion)
+					Settings.Default.AutoChtToChsConversion = rbtnChtToChsConvertion.Checked;
+				if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChsToChtConversion)
+					Settings.Default.AutoChsToChtConversion = rbtnChsToChtConvertion.Checked;
+				Settings.Default.HttpTimeout = GetCbSelectedValueInt(cboHttpTimeout, ShooterConst.MaxHttpTimeout);
 				Settings.Default.Save();
 			}
 
@@ -194,16 +197,8 @@ namespace ShooterDownloader
 
 		private static int GetCbSelectedValueInt(ComboBox cb, int defaultValue)
 		{
-			int value;
-			try
-			{
-				value = int.Parse(cb.Text);
-			}
-			catch(Exception)
-			{
-				value = defaultValue;
-			}
-
+			int value = defaultValue;
+			int.TryParse(cb.Text, out value);
 			return value;
 		}
 	}

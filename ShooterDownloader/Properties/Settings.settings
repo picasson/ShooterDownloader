@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AutoChsToChtConversion" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="QueryUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://svplayer.shooter.cn/api/subapi.php</Value>
@@ -46,6 +46,9 @@
     </Setting>
     <Setting Name="HttpTimeout" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="AutoChtToChsConversion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
