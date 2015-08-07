@@ -228,7 +228,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtVideoFileExt;
         private System.Windows.Forms.ComboBox cboConcurrenctNum;
-        private System.Windows.Forms.CheckBox chkEnableConvert;
         private System.Windows.Forms.Label lblTitleVersion;
         private System.Windows.Forms.Button btnEnableShellExt;
         private System.Windows.Forms.Label label3;
@@ -236,8 +235,6 @@
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnOk;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.RadioButton rbtnChtToChsConvertion;
-		private System.Windows.Forms.RadioButton rbtnChsToChtConvertion;
 		private System.Windows.Forms.ComboBox cboLanguageConversion;
 	}
 }

@@ -179,7 +179,7 @@ namespace ShooterDownloader
 		[DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
 		private static extern int LCMapString(int Locale, int dwMapFlags, string lpSrcStr, int cchSrc, [Out] string lpDestStr, int cchDest);
 
-		public static ConversionResult ConvertChtToChs(string inFile, string outFile) => ConvertChsToCht(inFile, outFile, true);
+		public static ConversionResult ConvertChtToChs(string inFile, string outFile) => ConvertChtToChs(inFile, outFile, true);
 
 		public static ConversionResult ConvertChtToChs(string inFile, string outFile, bool detectEncoding)
 		{

@@ -82,7 +82,12 @@ namespace ShooterDownloader
 
 			chkEnableLog.Checked = Settings.Default.EnableLog;
 
-			chkEnableConvert.Checked = Settings.Default.AutoChsToChtConversion;
+			if(Settings.Default.AutoChtToChsConversion)
+				cboLanguageConversion.SelectedItem = ShooterConst.AutoChtToChsConversion;
+			else if(Settings.Default.AutoChsToChtConversion)
+				cboLanguageConversion.SelectedItem = ShooterConst.AutoChsToChtConversion;
+			else
+				cboLanguageConversion.SelectedItem = ShooterConst.DontConversion;
 
 			if(concurrentNum != Settings.Default.MaxConcurrentJobs)
 				IsDirty = true;
@@ -103,10 +108,17 @@ namespace ShooterDownloader
 				Settings.Default.MaxConcurrentJobs = GetCbSelectedValueInt(cboConcurrenctNum, 1);
 				Settings.Default.VideoFileExt = txtVideoFileExt.Text;
 				Settings.Default.EnableLog = chkEnableLog.Checked;
-				if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChtToChsConversion)
-					Settings.Default.AutoChtToChsConversion = rbtnChtToChsConvertion.Checked;
-				if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChsToChtConversion)
-					Settings.Default.AutoChsToChtConversion = rbtnChsToChtConvertion.Checked;
+
+
+				if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChtToChsConversion) { 
+					Settings.Default.AutoChtToChsConversion = true;
+					Settings.Default.AutoChsToChtConversion = !Settings.Default.AutoChtToChsConversion;
+				}
+				else if(cboLanguageConversion.SelectedItem == ShooterConst.AutoChsToChtConversion)
+				{
+					Settings.Default.AutoChtToChsConversion = false;
+					Settings.Default.AutoChsToChtConversion = !Settings.Default.AutoChtToChsConversion;
+				}
 				Settings.Default.HttpTimeout = GetCbSelectedValueInt(cboHttpTimeout, ShooterConst.MaxHttpTimeout);
 				Settings.Default.Save();
 			}

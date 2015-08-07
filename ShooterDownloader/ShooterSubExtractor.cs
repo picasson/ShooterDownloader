@@ -100,8 +100,7 @@ namespace ShooterDownloader
 			}
 			finally
 			{
-				if(subTempReader != null)
-					subTempReader.Close();
+				subTempReader?.Close();
 			}
 
 			return result;
